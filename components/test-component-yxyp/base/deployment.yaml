@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/created-by: application-service
+    app.kubernetes.io/instance: test-component-yxyp
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: test-component-yxyp
+    app.kubernetes.io/part-of: test-app-xcul
+  name: test-component-yxyp
+spec:
+  replicas: 1
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: pip-e2e-test
+      app.kubernetes.io/instance: test-component-yxyp
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: pip-e2e-test
+        app.kubernetes.io/instance: test-component-yxyp
+    spec:
+      containers:
+      - image: quay.io/susdas/test-images:50ec534f65bd4c899006185cc885e570
+        name: pip-e2e-test
+        ports:
+        - containerPort: 8081
+        resources:
+          limits:
+            cpu: 500m
+            memory: 1Gi
+status: {}
